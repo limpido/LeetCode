@@ -9,3 +9,9 @@ class Solution:
             start += 1
             end -= 1
         return s
+    
+    def reverseStringRecursive(self, s):
+        l = len(s)
+        if l < 2:
+            return s
+        return self.reverseString(s[l/2:]) + self.reverseString(s[:l/2])

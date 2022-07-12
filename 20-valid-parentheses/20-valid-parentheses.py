@@ -1,18 +1,12 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        dic = {'(':')', '[':']', '{':'}'}
         stack = []
+        
         for bracket in s:
-            if bracket in ['(', '{', '[']:
+            if bracket in dic:
                 stack.append(bracket)
-            elif len(stack) == 0:
-                return False
             else:
-                if bracket == ')' and stack[-1] == '(':
-                    stack.pop()
-                elif bracket == '}' and stack[-1] == '{':
-                    stack.pop()
-                elif bracket == ']' and stack[-1] == '[':
-                    stack.pop()
-                else:
+                if len(stack) == 0 or dic[stack.pop()] != bracket:
                     return False
-        return True if len(stack) == 0 else False
+        return len(stack) == 0

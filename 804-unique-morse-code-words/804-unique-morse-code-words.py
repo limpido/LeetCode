@@ -4,8 +4,8 @@ class Solution:
         code = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
         transformation = set()
         for word in words:
-            concat = ''
+            concat = []
             for ch in word:
-                concat += code[ord(ch)-97]
-            transformation.add(concat)
+                concat.append(code[ord(ch) - ord('a')])
+            transformation.add(''.join(concat))
         return len(transformation)

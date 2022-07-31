@@ -1,21 +1,15 @@
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
-        res = []
-        i = 0
-        while i < len(nums) and nums[i] < 0:
-            i += 1
-        left, right = i-1, i
-        while left >=0 and right < len(nums):
-            if nums[left] ** 2 < nums[right] ** 2:
-                res.append(nums[left] ** 2)
-                left -= 1
+        res = [0]*len(nums)
+        left, right = 0, len(nums)-1
+        i = len(nums)-1
+        while i >= 0:
+            if nums[left] ** 2 > nums[right] ** 2:
+                res[i] = nums[left] ** 2
+                left += 1
+                i -= 1
             else:
-                res.append(nums[right] ** 2)
-                right += 1
-        while left >= 0:
-            res.append(nums[left] ** 2)
-            left -= 1
-        while right < len(nums):
-            res.append(nums[right] ** 2)
-            right += 1
+                res[i] = nums[right] ** 2
+                right -= 1
+                i -= 1
         return res

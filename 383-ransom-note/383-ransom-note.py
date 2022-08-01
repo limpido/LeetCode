@@ -1,13 +1,11 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        hashmap = {}
+        arr = [0]*26
         for ch in magazine:
-            if ch in hashmap:
-                hashmap[ch] += 1
-            else:
-                hashmap[ch] = 1
+            arr[ord(ch)-ord('a')] += 1
         for ch in ransomNote:
-            if ch not in hashmap or hashmap[ch] == 0:
+            idx = ord(ch) - ord('a')
+            if arr[idx] == 0:
                 return False
-            hashmap[ch] -= 1
+            arr[idx] -= 1
         return True

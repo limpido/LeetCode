@@ -22,13 +22,9 @@ class Solution:
         for i in range(k):
             q.push(nums[i])
         res.append(q.front())
-        l, r = 0, k-1
-        while r < len(nums):
-            q.pop(nums[l])
-            l += 1
-            r += 1
-            if r >= len(nums): break
-            q.push(nums[r])
+        for i in range(k, len(nums)):
+            q.pop(nums[i-k])
+            q.push(nums[i])
             res.append(q.front())
         return res
             

@@ -20,13 +20,17 @@ class Solution:
             0: (4, 6)
         }
         
-        prev = [1] * 10
+
+        dp = [[0]*(n+1) for _ in range(10)]
+        for i in range(10):
+            dp[i][1] = 1
         
         for k in range(2, n+1):
-            cur = [0] * 10
             for i in range(10):
                 for neighbor in neighbors[i]:
-                    cur[i] += prev[neighbor]
-            prev = cur
+                    dp[i][k] += dp[neighbor][k-1]
         
-        return sum(cur) % (10**9 + 7)
+        count = 0
+        for i in range(10):
+            count += dp[i][n]
+        return count % (10**9 + 7)

@@ -21,6 +21,9 @@ class Solution:
         }
         
 
+        '''
+        Method 1: 2D array
+        
         dp = [[0]*(n+1) for _ in range(10)]
         for i in range(10):
             dp[i][1] = 1
@@ -34,3 +37,16 @@ class Solution:
         for i in range(10):
             count += dp[i][n]
         return count % (10**9 + 7)
+        '''
+        
+        '''Method 2: 1D array'''
+        prev = [1] * 10
+        
+        for k in range(2, n+1):
+            cur = [0] * 10
+            for i in range(10):
+                for neighbor in neighbors[i]:
+                    cur[i] += prev[neighbor]
+            prev = cur
+        
+        return sum(cur) % (10**9 + 7)

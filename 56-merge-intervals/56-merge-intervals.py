@@ -6,9 +6,8 @@ class Solution:
         for i in range(1, len(intervals)):
             cur = intervals[i]
             if prev[1] >= cur[0]:
-                left = min(prev[0], cur[0])
                 right = max(prev[1], cur[1])
-                prev = [left, right]
+                prev[1] = right
             else:
                 res.append(prev)
                 prev = cur

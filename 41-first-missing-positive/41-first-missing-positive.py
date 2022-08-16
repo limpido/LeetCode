@@ -12,18 +12,19 @@ class Solution:
             else:
                 return i
         '''
-        n = len(nums)
-        for i in range(n):
-            if nums[i] < 1 or nums[i] > n:
-                nums[i] = 0
-                
-        for i in range(n):
-            if 1 <= nums[i] % (n + 1) <= n:
-                ind = nums[i] % (n + 1) - 1
-                nums[ind] += n + 1
-          
-        for i in range(n):
-            if nums[i] <= n:
-                return i + 1
         
-        return n + 1
+        '''3. cyclic sort'''
+        i = 0
+        while i < len(nums):
+            if nums[i] > 0 and nums[i] < len(nums) and nums[i] != i+1:
+                j = nums[i]-1
+                if nums[i] == nums[j]:
+                    i += 1
+                else:
+                    nums[i], nums[j] = nums[j], nums[i]
+            else:
+                i += 1
+        for i in range(len(nums)):
+            if nums[i] != i+1:
+                return i+1
+        return len(nums)+1

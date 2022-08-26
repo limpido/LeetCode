@@ -1,5 +1,7 @@
 class Solution:
     def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
+        '''Method 1: bucket sort'''
+        '''
         bucket = [[] for _ in range(len(arr)+1)]
         freq = {}
         for n in arr:
@@ -17,3 +19,11 @@ class Solution:
                 s.remove(n)
             k -= i
         return len(s)
+        '''
+        
+        '''Method 2: priority queue / min heap'''
+        hp = list(collections.Counter(arr).values())
+        heapq.heapify(hp)
+        while k > 0:
+            k -= heapq.heappop(hp)
+        return len(hp) + (k < 0)

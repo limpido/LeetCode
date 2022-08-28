@@ -8,7 +8,7 @@ class Solution:
         1. pick nums[i]: dp[i][j] = dp[i-1][j-nums[i]]
         2. not pick nums[i]: dp[i][j] = dp[i-1][j]
         dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i]]
-        '''
+        
         total = sum(nums)
         if total%2 == 1:
             return False
@@ -29,3 +29,21 @@ class Solution:
                     dp[i][j] = dp[i-1][j]
         
         return dp[n][total]
+        '''
+        
+        '''Method 2: 1d dp'''
+        total = sum(nums)
+        if total%2 == 1:
+            return False
+        
+        total = total // 2
+        dp = [False]*(total+1)
+        dp[0] = True
+        
+        for num in nums:
+            for i in range(total, 0, -1):
+                if i >= num:
+                    dp[i] = dp[i] or dp[i-num]
+                
+        return dp[total]
+        

@@ -15,6 +15,7 @@ class Solution:
         return ans
         '''
         
+        '''
         ans = []
         for i in range(1, n+1):
             s = ""
@@ -26,3 +27,22 @@ class Solution:
                 s = str(i)
             ans.append(s)
         return ans
+        '''
+        
+        d = {
+            3: "Fizz",
+            5: "Buzz"
+        }
+        divisors = [3, 5]
+        
+        ans = []
+        for i in range(1, n+1):
+            s = ""
+            for divisor in divisors:
+                if i % divisor == 0:
+                    s += d[divisor]
+            if not s:
+                s = str(i)
+            ans.append(s)
+        return ans
+        
